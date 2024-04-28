@@ -46,6 +46,17 @@
         font-family: "Montserrat", sans-serif;
         user-select: none;
       }
+      .anti-click {
+        position: fixed;
+        display: flex;
+        z-index: 2;
+        background-color: #00000000;
+        top: 90vh;
+        right: 0;
+        left: 0;
+        height: 75vh;
+      }
+
       .container {
         display: flex;
         height: 100vh;
@@ -86,7 +97,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         color: white;
-        font-size: 8.5em;
+        font-size: 7em;
         animation: popUp 0.5s ease;
       }
       .buttons {
@@ -95,6 +106,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 3;
       }
       .buttons.reset {
         position: absolute;
@@ -113,6 +125,7 @@
         color: white;
         font-size: 16px;
         cursor: pointer;
+        z-index: 2;
       }
       .buttons button:disabled {
         background: #cccccc;
@@ -227,11 +240,14 @@
         document.querySelector(".container").style.filter = "blur(10px)";
         document.getElementById("newNumber").value = number;
       }
-      function confirmEdit() {
-        let newNumber = document.getElementById("newNumber").value;
-        if (newNumber.startsWith("0")) {
-          newNumber = newNumber.slice(1);
-        }
+
+      function cancelEdit() {
+        document.querySelector(".edit-overlay").style.display = "none";
+        document.querySelector(".container").style.filter = "none";
+      }
+
+      function alertEdit() {
+        let newNumber = document.getElementById("newNumber").value.trim();
         Swal.fire({
           title: `<span style='color:#fff;'>Apakah Anda Ingin mengedit angka menjadi ${newNumber}?</span>`,
           showCancelButton: true,
@@ -245,11 +261,7 @@
           background: "#0f0e17",
         }).then((result) => {
           if (result.isConfirmed) {
-            if (
-              newNumber !== null &&
-              !isNaN(newNumber) &&
-              newNumber.trim() !== ""
-            ) {
+            if (newNumber !== "" && !isNaN(newNumber)) {
               number = parseInt(newNumber);
               document.querySelector(".overlay").innerText = number;
             } else {
@@ -261,14 +273,25 @@
           }
         });
       }
-      function cancelEdit() {
-        document.querySelector(".edit-overlay").style.display = "none";
-        document.querySelector(".container").style.filter = "none";
+
+      function confirmEdit() {
+        let newNumber = document.getElementById("newNumber").value.trim();
+        if (number == parseInt(newNumber)) {
+          document.querySelector(".edit-overlay").style.display = "none";
+          document.querySelector(".container").style.filter = "none";
+          return;
+        }
+
+        if (newNumber > 0 && newNumber.startsWith("0")) {
+          newNumber = newNumber.slice(1);
+        }
+        alertEdit();
       }
     </script>
   </head>
   <body>
     <div class="container">
+      <div class="anti-click"></div>
       <div class="left" onclick="decreaseNumber()">
         <div class="buttons reset">
           <button class="button-red" onclick="resetNumber()">Reset</button>

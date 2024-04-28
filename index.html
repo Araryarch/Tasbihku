@@ -39,6 +39,9 @@
       href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css"
     />
     <style>
+      body {
+        overflow: hidden;
+      }
       * {
         margin: 0;
         padding: 0;
@@ -47,17 +50,18 @@
         user-select: none;
       }
       .anti-click {
-        position: fixed;
+        position: absolute;
         display: flex;
-        z-index: 2;
+        z-index: 3;
         background-color: #00000000;
-        top: 90vh;
+        top: 80vh;
         right: 0;
         left: 0;
         height: 75vh;
       }
 
       .container {
+        overflow: hidden;
         display: flex;
         height: 100vh;
         max-height: 100vh;

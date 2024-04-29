@@ -18,12 +18,13 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <meta name="theme-color" content="#ff4500" />
+
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="manifest" href="/manifest.json" />
     <title>TasbihKu - Digital Tasbih</title>
-    <meta name="theme-color" content="#ff4500" />
   </head>
   <body>
     <div class="container">
@@ -45,7 +46,12 @@
     </div>
     <div class="edit-overlay" style="display: none">
       <div class="edit-form">
-        <input type="number" id="newNumber" placeholder="Masukkan angka baru" />
+        <input
+          type="number"
+          id="newNumber"
+          placeholder="Masukkan angka baru"
+          required
+        />
         <div class="button">
           <button onclick="confirmEdit()">Ubah</button>
           <button class="button-red" onclick="cancelEdit()">Batal</button>

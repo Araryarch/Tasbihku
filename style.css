@@ -11,6 +11,7 @@
   position: relative;
 }
 .buttons-overlay {
+  padding: 2rem 0;
   position: absolute;
   display: flex;
   justify-content: space-evenly;

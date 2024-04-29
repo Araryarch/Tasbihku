@@ -20,20 +20,54 @@ function decreaseNumber() {
   document.querySelector(".overlay").style.animation = "popUp 0.5s ease";
 }
 function resetNumber() {
-  number = 0;
-  document.querySelector(".overlay").innerText = number;
+  Swal.fire({
+    title: "Reset Angka",
+    text: "Apakah Anda yakin ingin mereset angka?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Ya, Reset!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      number = 0;
+      document.querySelector(".overlay").innerText = number;
+    }
+  });
 }
 function editNumber() {
   document.querySelector(".edit-overlay").style.display = "block";
   document.querySelector(".container").style.filter = "blur(10px)";
+  document.getElementById("newNumber").value = number;
 }
 function confirmEdit() {
   let newNumber = document.getElementById("newNumber").value;
   if (newNumber !== null && !isNaN(newNumber) && newNumber.trim() !== "") {
-    number = parseInt(newNumber);
-    document.querySelector(".overlay").innerText = number;
+    if (parseInt(newNumber) === number) {
+      number = parseInt(newNumber);
+      document.querySelector(".overlay").innerText = number;
+    } else {
+      Swal.fire({
+        title: "Ubah Angka",
+        text: "Apakah Anda yakin ingin mengubah angka?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, Ubah!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          number = parseInt(newNumber);
+          document.querySelector(".overlay").innerText = number;
+        }
+      });
+    }
   } else {
-    alert("Masukkan angka yang valid");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Masukkan angka yang valid",
+    });
   }
   document.querySelector(".edit-overlay").style.display = "none";
   document.querySelector(".container").style.filter = "none";

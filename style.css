@@ -27,7 +27,7 @@ body {
 .left {
   position: relative;
   flex: 1;
-  background: #f25f4c;
+  background: #e53170;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +41,7 @@ body {
 .right {
   position: relative;
   flex: 1;
-  background: #e53170;
+  background: #f25f4c;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,13 +81,14 @@ body {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background: #4caf50;
+  background: #ff4500;
   color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   font-size: 16px;
   cursor: pointer;
 }
 .buttons button:hover {
-  background: #45a049;
+  background: #ff7f50;
 }
 .edit-overlay {
   position: absolute;
@@ -118,16 +119,22 @@ body {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background: #4caf50;
+  background: #ff4500;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   color: white;
   font-size: 16px;
   cursor: pointer;
 }
 .edit-form button:hover {
-  background: #45a049;
+  background: #ff7f50;
 }
 .button-red {
-  background-color: maroon !important;
+  background-color: #800000 !important;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.button-red:hover {
+  background-color: #8b0000 !important;
 }
 @keyframes popUp {
   0% {

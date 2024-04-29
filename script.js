@@ -1,24 +1,32 @@
 let number = 0;
+let lastNumber = 0;
+
 function increaseNumber() {
   number++;
+  lastNumber++;
   if (number < 0) {
     number = 0;
+    lastNumber = number;
   }
   document.querySelector(".overlay").innerText = number;
   document.querySelector(".overlay").style.animation = "none";
   void document.querySelector(".overlay").offsetWidth;
   document.querySelector(".overlay").style.animation = "popUp 0.5s ease";
 }
+
 function decreaseNumber() {
   number--;
+  lastNumber--;
   if (number < 0) {
     number = 0;
+    lastNumber = number;
   }
   document.querySelector(".overlay").innerText = number;
   document.querySelector(".overlay").style.animation = "none";
   void document.querySelector(".overlay").offsetWidth;
   document.querySelector(".overlay").style.animation = "popUp 0.5s ease";
 }
+
 function resetNumber() {
   Swal.fire({
     title: "Reset Angka",
@@ -35,14 +43,19 @@ function resetNumber() {
     }
   });
 }
+
 function editNumber() {
   document.querySelector(".edit-overlay").style.display = "block";
   document.querySelector(".container").style.filter = "blur(10px)";
   document.getElementById("newNumber").value = number;
 }
+
 function confirmEdit() {
   let newNumber = document.getElementById("newNumber").value;
-  if (newNumber !== null && !isNaN(newNumber) && newNumber.trim() !== "") {
+  if (newNumber === null || newNumber.trim() === "") {
+    number = lastNumber;
+    document.querySelector(".overlay").innerText = number;
+  } else if (!isNaN(newNumber) && newNumber.trim() !== "") {
     if (parseInt(newNumber) === number) {
       number = parseInt(newNumber);
       document.querySelector(".overlay").innerText = number;
@@ -72,6 +85,7 @@ function confirmEdit() {
   document.querySelector(".edit-overlay").style.display = "none";
   document.querySelector(".container").style.filter = "none";
 }
+
 function cancelEdit() {
   document.querySelector(".edit-overlay").style.display = "none";
   document.querySelector(".container").style.filter = "none";

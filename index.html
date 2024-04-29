@@ -1,6 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
   <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Tasbih Digital, Counter Digital - Aplikasi Sederhana untuk Menghitung dan Menambah Angka"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
@@ -10,17 +18,17 @@
   <body>
     <div class="container">
       <div class="left" onclick="decreaseNumber()">
-        <div class="buttons reset">
-          <button class="button-red" onclick="resetNumber()">Reset</button>
-        </div>
         <div class="text">
           <p>Kurang</p>
         </div>
       </div>
+
+      <div class="buttons-overlay buttons">
+        <button class="button-red" onclick="resetNumber()">Reset</button>
+        <button onclick="editNumber()">Edit</button>
+      </div>
+
       <div class="right" onclick="increaseNumber()">
-        <div class="buttons edit">
-          <button onclick="editNumber()">Edit</button>
-        </div>
         <div class="text">
           <p>Tambah</p>
         </div>
@@ -31,8 +39,8 @@
       <div class="edit-form">
         <input type="number" id="newNumber" placeholder="Masukkan angka baru" />
         <div class="button">
-          <button class="button-red" onclick="cancelEdit()">Batal</button>
           <button onclick="confirmEdit()">Ubah</button>
+          <button class="button-red" onclick="cancelEdit()">Batal</button>
         </div>
       </div>
     </div>
